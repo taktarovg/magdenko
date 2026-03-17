@@ -13,16 +13,17 @@ async function checkAuth(request: NextRequest) {
 // PUT - Обновить эксперта
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   if (!(await checkAuth(request))) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
   try {
+    const { id } = await params
     const body = await request.json()
     const expert = await prisma.expert.update({
-      where: { id: params.id },
+      where: { id },
       data: body,
     })
     return NextResponse.json(expert)
@@ -35,15 +36,16 @@ export async function PUT(
 // DELETE - Удалить эксперта
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   if (!(await checkAuth(request))) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
   try {
+    const { id } = await params
     await prisma.expert.delete({
-      where: { id: params.id },
+      where: { id },
     })
     return NextResponse.json({ success: true })
   } catch (error) {

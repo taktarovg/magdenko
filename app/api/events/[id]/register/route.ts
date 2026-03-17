@@ -3,9 +3,10 @@ import { prisma } from '@/lib/prisma'
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const body = await request.json()
     const { name, email, phone, message } = body
 
@@ -19,7 +20,7 @@ export async function POST(
 
     // Проверяем событие
     const event = await prisma.event.findUnique({
-      where: { id: params.id },
+      where: { id },
     })
 
     if (!event) {
@@ -47,7 +48,7 @@ export async function POST(
     // Проверяем, не зарегистрирован ли уже этот email
     const existingRegistration = await prisma.eventRegistration.findFirst({
       where: {
-        eventId: params.id,
+        eventId: id,
         email,
         status: { not: 'CANCELLED' },
       },
@@ -63,7 +64,7 @@ export async function POST(
     // Создаем регистрацию
     const registration = await prisma.eventRegistration.create({
       data: {
-        eventId: params.id,
+        eventId: id,
         name,
         email,
         phone,
@@ -74,7 +75,7 @@ export async function POST(
 
     // Увеличиваем счетчик забронированных мест
     await prisma.event.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         bookedSeats: { increment: 1 },
       },

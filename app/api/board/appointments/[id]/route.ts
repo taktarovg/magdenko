@@ -12,16 +12,17 @@ async function checkAuth(request: NextRequest) {
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   if (!(await checkAuth(request))) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
   try {
+    const { id } = await params
     const body = await request.json()
     const appointment = await prisma.appointment.update({
-      where: { id: params.id },
+      where: { id },
       data: body,
     })
     return NextResponse.json(appointment)

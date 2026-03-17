@@ -13,15 +13,16 @@ async function checkAuth(request: NextRequest) {
 // PUT - Обновить событие
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   if (!(await checkAuth(request))) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
   try {
+    const { id } = await params
     const body = await request.json()
-    
+
     const data = {
       ...body,
       startDate: body.startDate ? new Date(body.startDate) : undefined,
@@ -29,7 +30,7 @@ export async function PUT(
     }
 
     const event = await prisma.event.update({
-      where: { id: params.id },
+      where: { id },
       data,
     })
     
@@ -43,15 +44,16 @@ export async function PUT(
 // DELETE - Удалить событие
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   if (!(await checkAuth(request))) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
   try {
+    const { id } = await params
     await prisma.event.delete({
-      where: { id: params.id },
+      where: { id },
     })
     return NextResponse.json({ success: true })
   } catch (error) {
