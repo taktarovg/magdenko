@@ -1,36 +1,171 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Сайт психолога Ольги Магденко
 
-## Getting Started
+Современный сайт на Next.js 16 для психолога с админ-панелью и SQLite базой данных.
 
-First, run the development server:
+## 🚀 Технологии
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Next.js 16** (App Router) - React фреймворк
+- **TypeScript** - типизация
+- **Tailwind CSS** - стилизация
+- **Prisma** - ORM для работы с БД
+- **SQLite** - локальная база данных
+- **Framer Motion** - анимации
+- **React Hook Form** - формы
+
+## 📦 Установка
+
+Проект уже установлен. Все зависимости добавлены в `package.json`.
+
+## 🗄️ База данных
+
+База данных SQLite уже создана и готова к работе:
+- Файл: `prisma/dev.db`
+- Миграции применены
+
+### Модели базы данных:
+- **Service** - услуги психолога
+- **Course** - курсы и групповые практики
+- **Appointment** - заявки на консультацию
+- **Test** - психологические тесты
+- **Question** - вопросы тестов
+- **Answer** - варианты ответов
+- **Book** - книги и публикации
+- **Review** - отзывы клиентов
+- **Admin** - администраторы
+- **ContactForm** - контактные формы
+- **SiteSettings** - настройки сайта
+
+## 🎨 Структура проекта
+
+```
+magdenko/
+├── app/                    # Next.js App Router
+│   ├── page.tsx           # Главная страница
+│   ├── about/             # О психологе
+│   ├── services/          # Услуги
+│   ├── courses/           # Курсы
+│   ├── books/             # Книги и публикации
+│   ├── tests/             # Психологические тесты
+│   ├── contacts/          # Контакты и форма
+│   └── api/               # API endpoints
+│       └── contact/       # API для контактной формы
+├── components/            # React компоненты
+│   ├── header.tsx        # Шапка сайта
+│   ├── footer.tsx        # Подвал
+│   └── ui/               # UI компоненты
+│       ├── button.tsx
+│       ├── card.tsx
+│       ├── input.tsx
+│       └── textarea.tsx
+├── lib/                   # Утилиты
+│   ├── prisma.ts         # Prisma клиент
+│   ├── utils.ts          # Вспомогательные функции
+│   └── site-config.ts    # Конфигурация сайта
+├── prisma/
+│   ├── schema.prisma     # Схема базы данных
+│   └── dev.db            # SQLite база данных
+└── public/               # Статические файлы
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 Готовые страницы
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+✅ **Главная** (`/`) - Hero секция, услуги, преимущества, CTA
+✅ **Обо мне** (`/about`) - Биография, образование, опыт, подходы
+✅ **Услуги** (`/services`) - 4 направления работы с детальным описанием
+✅ **Курсы** (`/courses`) - Групповые практики
+✅ **Книги** (`/books`) - Публикации и научные работы
+✅ **Тесты** (`/tests`) - Психологические тесты (заглушка)
+✅ **Контакты** (`/contacts`) - Контактная информация и форма связи
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Команды
 
-## Learn More
+```bash
+# Запуск dev сервера
+npm run dev
 
-To learn more about Next.js, take a look at the following resources:
+# Сборка для production
+npm run build
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Запуск production сервера
+npm start
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Линтинг
+npm run lint
 
-## Deploy on Vercel
+# Работа с Prisma
+npx prisma studio          # Открыть Prisma Studio для просмотра БД
+npx prisma migrate dev     # Создать новую миграцию
+npx prisma generate        # Сгенерировать Prisma Client
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🌐 Доступ к сайту
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+После запуска `npm run dev` сайт доступен по адресу:
+- http://localhost:3000
+
+## 📝 Что нужно сделать далее
+
+### Ближайшие задачи:
+1. ✅ Базовая структура сайта
+2. ✅ Главная страница
+3. ✅ Страницы: О психологе, Услуги, Контакты
+4. ✅ API для контактной формы
+5. ⏳ Добавить реальные изображения
+6. ⏳ Создать админ-панель
+7. ⏳ Добавить интерактивные тесты
+8. ⏳ Настроить email уведомления
+9. ⏳ Добавить Telegram уведомления
+10. ⏳ Создать систему записи на консультации
+
+### Админ-панель (следующий этап):
+- Аутентификация администратора
+- CRUD для услуг
+- CRUD для курсов
+- Управление заявками
+- Управление тестами
+- Управление контентом
+- Просмотр статистики
+
+### Дополнительные функции:
+- Календарь для записи на консультации
+- Онлайн-оплата
+- Личный кабинет клиента
+- Блог/статьи
+- Отзывы с модерацией
+
+## 🎨 Цветовая схема
+
+```css
+--primary: #2B5A7E        /* Глубокий синий */
+--secondary: #E8B86D      /* Теплый золотой */
+--accent: #7FB3D5         /* Мягкий голубой */
+--background: #F8F9FA     /* Светлый фон */
+--foreground: #2C3E50     /* Темный текст */
+```
+
+## 📧 Контакты
+
+- **Телефон**: +7 913 913 2448
+- **Email**: olga_mag@academ.org
+- **Telegram**: @magdenko_psy
+- **Город**: Новосибирск
+
+## 🔐 Переменные окружения
+
+Файл `.env` содержит:
+```
+DATABASE_URL="file:./dev.db"
+NEXTAUTH_SECRET="..."
+NEXTAUTH_URL="http://localhost:3000"
+```
+
+## 📄 Лицензия
+
+Частный проект для психолога Ольги Магденко.
+
+---
+
+**Статус проекта**: 🚧 В разработке
+
+**Версия**: 0.1.0

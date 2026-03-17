@@ -1,0 +1,232 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Услуги психолога
+model Service {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  price       String
+  duration    String
+  category    String   // INDIVIDUAL, FAMILY, PERINATAL, CHILD
+  icon        String?
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Курсы и групповые практики
+model Course {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  schedule    String?
+  price       String?
+  maxStudents Int?
+  isActive    Boolean  @default(true)
+  image       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Заявки на консультацию
+model Appointment {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String
+  service   String
+  date      DateTime
+  message   String?
+  status    String   @default("PENDING") // PENDING, CONFIRMED, CANCELLED, COMPLETED
+  expertId  String?
+  expert    Expert?  @relation(fields: [expertId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Психологические тесты
+model Test {
+  id          String     @id @default(cuid())
+  title       String
+  description String?
+  questions   Question[]
+  isActive    Boolean    @default(true)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+// Вопросы теста
+model Question {
+  id      String   @id @default(cuid())
+  text    String
+  order   Int      @default(0)
+  answers Answer[]
+  testId  String
+  test    Test     @relation(fields: [testId], references: [id], onDelete: Cascade)
+}
+
+// Варианты ответов
+model Answer {
+  id         String   @id @default(cuid())
+  text       String
+  points     Int      @default(0)
+  order      Int      @default(0)
+  questionId String
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+}
+
+// Книги и публикации
+model Book {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  author      String   @default("Магденко О.В.")
+  year        String?
+  cover       String?
+  link        String?
+  type        String   @default("ARTICLE") // BOOK, ARTICLE, CHAPTER
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Отзывы клиентов
+model Review {
+  id        String   @id @default(cuid())
+  name      String
+  text      String
+  rating    Int      @default(5)
+  status    String   @default("PENDING") // PENDING, APPROVED, REJECTED
+  expertId  String?
+  expert    Expert?  @relation(fields: [expertId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Администраторы
+model Admin {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Контактные формы
+model ContactForm {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String
+  subject   String?
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+// Настройки сайта
+model SiteSettings {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  value       String
+  description String?
+  updatedAt   DateTime @updatedAt
+}
+
+// Эксперты/Коллеги
+model Expert {
+  id            String        @id @default(cuid())
+  name          String
+  specialty     String
+  description   String
+  bio           String?
+  photo         String?
+  email         String
+  phone         String?
+  telegram      String?
+  experience    String?
+  education     String?
+  approaches    String?
+  price         String?
+  duration      String?
+  isActive      Boolean       @default(true)
+  isFree        Boolean       @default(true)
+  order         Int           @default(0)
+  appointments  Appointment[]
+  reviews       Review[]
+  events        Event[]       @relation("EventExperts")
+  slots         ExpertSlot[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+// Слоты времени для записи к экспертам
+model ExpertSlot {
+  id        String   @id @default(cuid())
+  expertId  String
+  expert    Expert   @relation(fields: [expertId], references: [id], onDelete: Cascade)
+  date      DateTime
+  duration  Int      @default(60)
+  isBooked  Boolean  @default(false)
+  bookedBy  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@index([expertId, date])
+}
+
+// События/Афиша
+model Event {
+  id            String              @id @default(cuid())
+  title         String
+  description   String
+  content       String?
+  image         String?
+  startDate     DateTime
+  endDate       DateTime?
+  location      String?
+  format        String              @default("OFFLINE") // ONLINE, OFFLINE, HYBRID
+  price         String?
+  maxSeats      Int?
+  bookedSeats   Int                 @default(0)
+  isActive      Boolean             @default(true)
+  isPublished   Boolean             @default(false)
+  category      String?
+  tags          String?
+  experts       Expert[]            @relation("EventExperts")
+  organizer     String?
+  registrations EventRegistration[]
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+  
+  @@index([startDate, isPublished])
+}
+
+// Регистрации на события
+model EventRegistration {
+  id        String   @id @default(cuid())
+  eventId   String
+  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  name      String
+  email     String
+  phone     String?
+  message   String?
+  status    String   @default("PENDING") // PENDING, CONFIRMED, CANCELLED, ATTENDED
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@index([eventId])
+}
