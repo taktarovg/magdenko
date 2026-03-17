@@ -48,48 +48,48 @@ export default function BoardPage() {
       description: 'Управление коллегами и экспертами',
       icon: Users,
       href: '/board/experts',
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-50',
+      color: 'text-primary',
+      bgColor: 'bg-primary/10',
     },
     {
       title: 'События',
       description: 'Управление афишей и мероприятиями',
       icon: Calendar,
       href: '/board/events',
-      color: 'text-green-600',
-      bgColor: 'bg-green-50',
+      color: 'text-sky-600',
+      bgColor: 'bg-sky-50',
     },
     {
       title: 'Услуги',
       description: 'Управление услугами и курсами',
       icon: BookOpen,
       href: '/board/services',
-      color: 'text-purple-600',
-      bgColor: 'bg-purple-50',
+      color: 'text-blue-600',
+      bgColor: 'bg-blue-50',
     },
     {
       title: 'Заявки',
       description: 'Заявки на консультации',
       icon: Mail,
       href: '/board/appointments',
-      color: 'text-orange-600',
-      bgColor: 'bg-orange-50',
+      color: 'text-indigo-600',
+      bgColor: 'bg-indigo-50',
     },
     {
       title: 'Отзывы',
       description: 'Модерация отзывов',
       icon: MessageSquare,
       href: '/board/reviews',
-      color: 'text-pink-600',
-      bgColor: 'bg-pink-50',
+      color: 'text-cyan-600',
+      bgColor: 'bg-cyan-50',
     },
     {
       title: 'Настройки',
       description: 'Настройки сайта',
       icon: Settings,
       href: '/board/settings',
-      color: 'text-gray-600',
-      bgColor: 'bg-gray-50',
+      color: 'text-slate-600',
+      bgColor: 'bg-slate-50',
     },
   ]
 
@@ -166,7 +166,7 @@ export default function BoardPage() {
             <Card>
               <CardContent className="pt-6">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-green-600 mb-2">—</div>
+                  <div className="text-3xl font-bold text-sky-600 mb-2">—</div>
                   <div className="text-sm text-gray-600">Событий</div>
                 </div>
               </CardContent>
@@ -174,7 +174,7 @@ export default function BoardPage() {
             <Card>
               <CardContent className="pt-6">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-orange-600 mb-2">—</div>
+                  <div className="text-3xl font-bold text-indigo-600 mb-2">—</div>
                   <div className="text-sm text-gray-600">Новых заявок</div>
                 </div>
               </CardContent>
@@ -182,7 +182,7 @@ export default function BoardPage() {
             <Card>
               <CardContent className="pt-6">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-pink-600 mb-2">—</div>
+                  <div className="text-3xl font-bold text-cyan-600 mb-2">—</div>
                   <div className="text-sm text-gray-600">Отзывов</div>
                 </div>
               </CardContent>

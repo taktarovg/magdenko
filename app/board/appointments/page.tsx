@@ -114,7 +114,7 @@ export default function AppointmentsPage() {
         </div>
 
         {/* Фильтры */}
-        <div className="mb-6 flex gap-2">
+        <div className="mb-6 flex flex-wrap gap-2">
           <Button
             variant={filter === 'ALL' ? 'default' : 'outline'}
             size="sm"
@@ -149,9 +149,9 @@ export default function AppointmentsPage() {
           {filteredAppointments.map((appointment) => (
             <Card key={appointment.id}>
               <CardContent className="pt-6">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 gap-2">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
                       <h3 className="text-lg font-semibold">{appointment.name}</h3>
                       <span className={`text-xs px-2 py-1 rounded ${getStatusColor(appointment.status)}`}>
                         {getStatusLabel(appointment.status)}
@@ -159,7 +159,7 @@ export default function AppointmentsPage() {
                     </div>
                     <p className="text-sm text-gray-600 mb-2">{appointment.service}</p>
                   </div>
-                  <div className="text-sm text-gray-500">
+                  <div className="text-sm text-gray-500 flex-shrink-0">
                     {formatDate(new Date(appointment.createdAt))}
                   </div>
                 </div>

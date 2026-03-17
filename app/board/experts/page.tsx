@@ -157,7 +157,7 @@ export default function ExpertsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
-        <div className="mb-6 flex items-center justify-between">
+        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-4">
             <Link href="/board">
               <Button variant="outline" size="sm">
@@ -166,11 +166,11 @@ export default function ExpertsPage() {
               </Button>
             </Link>
             <div>
-              <h1 className="text-3xl font-bold">Управление экспертами</h1>
+              <h1 className="text-2xl sm:text-3xl font-bold">Управление экспертами</h1>
               <p className="text-gray-600">Всего экспертов: {experts.length}</p>
             </div>
           </div>
-          <Button onClick={() => setShowForm(true)}>
+          <Button onClick={() => setShowForm(true)} className="w-full sm:w-auto">
             <Plus className="h-4 w-4 mr-2" />
             Добавить эксперта
           </Button>
@@ -349,9 +349,9 @@ export default function ExpertsPage() {
           {experts.map((expert) => (
             <Card key={expert.id}>
               <CardContent className="pt-6">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
                       <h3 className="text-xl font-semibold">{expert.name}</h3>
                       {!expert.isActive && (
                         <span className="text-xs bg-gray-200 px-2 py-1 rounded">
@@ -367,15 +367,15 @@ export default function ExpertsPage() {
                     <p className="text-sm text-primary font-medium mb-2">
                       {expert.specialty}
                     </p>
-                    <p className="text-sm text-gray-600 mb-2">
+                    <p className="text-sm text-gray-600 mb-2 line-clamp-2">
                       {expert.description}
                     </p>
-                    <div className="flex gap-4 text-sm text-gray-600">
-                      <span>📧 {expert.email}</span>
+                    <div className="flex flex-wrap gap-4 text-sm text-gray-600">
+                      <span className="truncate">📧 {expert.email}</span>
                       {expert.phone && <span>📱 {expert.phone}</span>}
                     </div>
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 flex-shrink-0">
                     <Link href={`/colleagues/${expert.id}`} target="_blank">
                       <Button variant="outline" size="sm">
                         <Eye className="h-4 w-4" />

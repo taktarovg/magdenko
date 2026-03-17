@@ -58,7 +58,7 @@ export default function ContactsPage() {
       
       <main className="flex-1">
         {/* Hero */}
-        <section className="bg-gradient-to-b from-primary/5 to-white py-16">
+        <section className="bg-gradient-to-b from-primary/5 to-background py-16">
           <div className="container mx-auto px-4 lg:px-8 text-center">
             <h1 className="mb-4 text-4xl font-bold">Контакты</h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">

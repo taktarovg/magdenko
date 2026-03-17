@@ -148,12 +148,12 @@ export default function ExpertPage() {
       
       <main className="flex-1">
         {/* Hero */}
-        <section className="bg-gradient-to-b from-primary/5 to-white py-16">
+        <section className="bg-gradient-to-b from-primary/5 to-background py-16">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="grid gap-8 lg:grid-cols-3">
               <div className="lg:col-span-1">
                 {expert.photo ? (
-                  <div className="aspect-square w-full rounded-2xl overflow-hidden bg-gray-100">
+                  <div className="aspect-square w-full rounded-2xl overflow-hidden bg-muted">
                     <img 
                       src={expert.photo} 
                       alt={expert.name}
@@ -203,7 +203,7 @@ export default function ExpertPage() {
                   )}
 
                   {expert.isFree && (
-                    <div className="flex items-start gap-3 col-span-2">
+                    <div className="flex items-start gap-3 md:col-span-2">
                       <Calendar className="h-5 w-5 text-green-600 mt-1" />
                       <div className="bg-green-50 px-4 py-2 rounded-lg flex-1">
                         <div className="font-medium text-sm text-green-800">Бесплатная запись</div>
@@ -279,7 +279,7 @@ export default function ExpertPage() {
                 
                 <div className="grid gap-8 lg:grid-cols-2">
                   {/* Available Slots */}
-                  <Card className="bg-white text-gray-900">
+                  <Card className="bg-white text-foreground">
                     <CardHeader>
                       <CardTitle>Доступное время</CardTitle>
                       <CardDescription>Выберите удобное время для консультации</CardDescription>
@@ -318,7 +318,7 @@ export default function ExpertPage() {
                   </Card>
 
                   {/* Booking Form */}
-                  <Card className="bg-white text-gray-900">
+                  <Card className="bg-white text-foreground">
                     <CardHeader>
                       <CardTitle>Ваши данные</CardTitle>
                       <CardDescription>Заполните форму для записи</CardDescription>

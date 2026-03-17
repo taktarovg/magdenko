@@ -27,7 +27,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="border-t bg-gray-50">
+    <footer className="border-t bg-muted">
       <div className="container mx-auto px-4 py-12 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
           {/* О психологе */}

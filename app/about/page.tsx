@@ -69,7 +69,7 @@ export default function AboutPage() {
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-gradient-to-b from-primary/5 to-white py-16 lg:py-24">
+        <section className="bg-gradient-to-b from-primary/5 to-background py-16 lg:py-24">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="grid gap-12 lg:grid-cols-2 items-center">
               <div>
@@ -124,7 +124,7 @@ export default function AboutPage() {
         </section>
 
         {/* Education */}
-        <section className="bg-gray-50 py-16 lg:py-24">
+        <section className="bg-muted py-16 lg:py-24">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="mb-12 text-center">
               <BookOpen className="mx-auto mb-4 h-12 w-12 text-primary" />
@@ -170,7 +170,7 @@ export default function AboutPage() {
         </section>
 
         {/* Approaches */}
-        <section className="bg-gray-50 py-16 lg:py-24">
+        <section className="bg-muted py-16 lg:py-24">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="mx-auto max-w-3xl">
               <h2 className="mb-8 text-center text-3xl font-bold">В каких подходах я работаю?</h2>

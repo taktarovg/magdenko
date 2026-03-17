@@ -37,7 +37,7 @@ export default function TestsPage() {
       
       <main className="flex-1">
         {/* Hero */}
-        <section className="bg-gradient-to-b from-primary/5 to-white py-16">
+        <section className="bg-gradient-to-b from-primary/5 to-background py-16">
           <div className="container mx-auto px-4 lg:px-8 text-center">
             <h1 className="mb-4 text-4xl font-bold">Психологические тесты</h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -94,7 +94,7 @@ export default function TestsPage() {
         </section>
 
         {/* Info */}
-        <section className="bg-gray-50 py-16">
+        <section className="bg-muted py-16">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="max-w-3xl mx-auto">
               <h2 className="text-3xl font-bold mb-8 text-center">Важно знать</h2>

@@ -128,7 +128,7 @@ export default function EventPage() {
       
       <main className="flex-1">
         {/* Hero */}
-        <section className="bg-gradient-to-b from-primary/5 to-white py-16">
+        <section className="bg-gradient-to-b from-primary/5 to-background py-16">
           <div className="container mx-auto px-4 lg:px-8">
             {event.image && (
               <div className="max-w-4xl mx-auto mb-8 rounded-2xl overflow-hidden">
@@ -209,7 +209,7 @@ export default function EventPage() {
 
         {/* Experts */}
         {event.experts.length > 0 && (
-          <section className="bg-gray-50 py-16">
+          <section className="bg-muted py-16">
             <div className="container mx-auto px-4 lg:px-8">
               <div className="max-w-4xl mx-auto">
                 <h2 className="text-3xl font-bold mb-8">Ведущие</h2>
@@ -318,7 +318,7 @@ export default function EventPage() {
         )}
 
         {isFull && (
-          <section className="py-16 bg-gray-50">
+          <section className="py-16 bg-muted">
             <div className="container mx-auto px-4 lg:px-8 text-center">
               <div className="max-w-2xl mx-auto">
                 <Users className="mx-auto h-16 w-16 text-gray-300 mb-4" />

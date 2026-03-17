@@ -16,8 +16,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           'disabled:pointer-events-none disabled:opacity-50',
           {
             'bg-primary text-white hover:bg-primary/90': variant === 'default',
-            'border border-gray-300 bg-white hover:bg-gray-50': variant === 'outline',
-            'hover:bg-gray-100': variant === 'ghost',
+            'border border-border bg-background hover:bg-muted': variant === 'outline',
+            'hover:bg-muted': variant === 'ghost',
             'text-primary underline-offset-4 hover:underline': variant === 'link',
           },
           {

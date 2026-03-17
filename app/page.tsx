@@ -68,11 +68,11 @@ export default async function Home() {
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-b from-primary/5 to-white py-20 lg:py-32">
+        <section className="relative bg-gradient-to-b from-primary/5 to-background py-20 lg:py-32">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="grid gap-12 lg:grid-cols-2 lg:gap-8 items-center">
               <div>
-                <h1 className="mb-6 text-4xl font-bold tracking-tight text-gray-900 lg:text-5xl">
+                <h1 className="mb-6 text-4xl font-bold tracking-tight text-foreground lg:text-5xl">
                   Профессиональная психологическая помощь для вашего благополучия
                 </h1>
                 <p className="mb-8 text-lg text-gray-600">
@@ -115,7 +115,7 @@ export default async function Home() {
         </section>
 
         {/* Services Section */}
-        <section className="bg-gray-50 py-16 lg:py-24">
+        <section className="bg-muted py-16 lg:py-24">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="mb-12 text-center">
               <h2 className="mb-4 text-3xl font-bold">Услуги</h2>
@@ -218,7 +218,7 @@ export default async function Home() {
 
         {/* Events Section */}
         {events.length > 0 && (
-          <section className="bg-gray-50 py-16 lg:py-24">
+          <section className="bg-muted py-16 lg:py-24">
             <div className="container mx-auto px-4 lg:px-8">
               <div className="mb-12 text-center">
                 <h2 className="mb-4 text-3xl font-bold">Ближайшие события</h2>
